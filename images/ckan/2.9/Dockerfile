@@ -162,7 +162,8 @@ RUN pip install -e /srv/app/src/ckan && \
     # Install default CKAN extensions
     pip install --no-index --find-links=/srv/app/ext_wheels ckanext-envvars && \
     pip install ckantoolkit && \
-    pip install ckanext-s3filestore && \
+    pip install -e 'git+https://github.com/qld-gov-au/ckanext-s3filestore.git#egg=ckanext-s3filestore' && \
+    pip install -r /usr/lib/ckan/default/src/ckanext-s3filestore/requirements.txt && \
     # Create and update CKAN config
     # Set timezone
     echo "UTC" >  /etc/timezone && \

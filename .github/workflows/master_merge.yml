@@ -60,7 +60,7 @@ jobs:
           push: true
           tags: |
             ghcr.io/${{ github.repository_owner }}/ckan:${{ steps.ubuntu.outputs.IMAGE_TAG }}
-            ghcr.io/${{ github.repository_owner }}/ckan:${{ github.sha }}
+            ghcr.io/${{ github.repository_owner }}/ckan:${{ github.sha }}-focal
           cache-from: type=local,src=/tmp/.buildx-cache-ubuntu-2-9
           cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-ubuntu-2-9
 

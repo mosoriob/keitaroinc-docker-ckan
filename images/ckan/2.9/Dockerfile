@@ -161,6 +161,7 @@ RUN pip install -e /srv/app/src/ckan && \
     pip install --no-index --find-links=/srv/app/wheels -r requirements.txt && \
     # Install default CKAN extensions
     pip install --no-index --find-links=/srv/app/ext_wheels ckanext-envvars && \
+    pip install ckantoolkit && \
     # Create and update CKAN config
     # Set timezone
     echo "UTC" >  /etc/timezone && \

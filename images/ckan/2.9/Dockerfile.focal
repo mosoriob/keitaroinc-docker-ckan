@@ -206,6 +206,7 @@ RUN pip install -e /srv/app/src/ckan && \
     pip install --no-index --find-links=/srv/app/wheels -r requirements.txt && \
     # Install default CKAN extensions
     pip install --no-index --find-links=/srv/app/ext_wheels ckanext-envvars && \
+    # Install S3 filestore
     # Create and update CKAN config
     # Generate CKAN config
     ckan generate config ${APP_DIR}/production.ini && \
@@ -223,6 +224,8 @@ RUN pip install -e /srv/app/src/ckan && \
 
 RUN cp /srv/app/src/ckan/ckan/config/solr/schema.solr8.xml /srv/app/src/ckan/ckan/config/solr/schema.xml
 RUN pip install -e 'git+https://github.com/mosoriob/ckanext-oauth2.git@0.7.1#egg=ckanext-oauth2'
+RUN pip install -e 'git+https://github.com/qld-gov-au/ckanext-s3filestore.git@0.7.7-qgov.9#egg=ckanext-s3filestore' && \
+    pip install boto3>=1.14.17 ckantoolkit>=0.0.4 pytz
 # Remove wheels
 RUN rm -rf /srv/app/wheels /srv/app/ext_wheels
 

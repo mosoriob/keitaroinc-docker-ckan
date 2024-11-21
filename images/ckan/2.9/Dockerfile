@@ -117,7 +117,7 @@ ENV CKAN_DIR=${SRC_DIR}/ckan
 ENV DATA_DIR=/srv/app/data
 ENV PIP_SRC=${SRC_DIR}
 ENV CKAN_SITE_URL=http://localhost:5000
-ENV CKAN__PLUGINS envvars image_view text_view recline_view datastore datapusher oauth2
+ENV CKAN__PLUGINS envvars image_view text_view recline_view datastore datapusher oauth2 s3filestore
 # Install necessary packages to run CKAN
 RUN apk add --no-cache \
     python3 \
@@ -162,6 +162,7 @@ RUN pip install -e /srv/app/src/ckan && \
     # Install default CKAN extensions
     pip install --no-index --find-links=/srv/app/ext_wheels ckanext-envvars && \
     pip install ckantoolkit && \
+    pip install ckanext-s3filestore && \
     # Create and update CKAN config
     # Set timezone
     echo "UTC" >  /etc/timezone && \

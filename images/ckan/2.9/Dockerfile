@@ -180,6 +180,7 @@ RUN pip install -e /srv/app/src/ckan && \
     chown -R ckan:ckan /srv/app && \
     cp /srv/app/src/ckan/ckan/config/solr/schema.solr8.xml /srv/app/src/ckan/ckan/config/solr/schema.xml
 
+RUN pip install -e 'git+https://github.com/mosoriob/ckanext-oauth2.git@0.7.1#egg=ckanext-oauth2'
 RUN pip install sqlalchemy==1.3.19
 # Remove wheels
 RUN rm -rf /srv/app/wheels /srv/app/ext_wheels

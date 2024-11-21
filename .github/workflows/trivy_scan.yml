@@ -1,10 +1,10 @@
 name: Repo Scan
 on:
   push:
-    branches: [ "master" ]
+    branches: ['master']
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ "master" ]
+    branches: ['master']
   schedule:
     - cron: '28 3 * * 5'
 
@@ -30,85 +30,10 @@ jobs:
         with:
           sarif_file: 'trivy-results.sarif'
 
-
-  scan_2_10:
-    name: scan_2_10
-    runs-on: ubuntu-20.04
-    steps:
-
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Build an image from Dockerfile
-        run: |
-          docker build -t keitaro/ckan/2.10:${{ github.sha }} -f ./images/ckan/2.10/Dockerfile ./images/ckan/2.10/
-
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: 'keitaro/ckan/2.10:${{ github.sha }}'
-          format: 'sarif'
-          output: 'trivy-results.sarif'
-
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: 'trivy-results.sarif'
-
-  scan_2_10_xloader:
-    name: scan_2_10_xloader
-    runs-on: ubuntu-20.04
-    steps:
-
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Build an image from Dockerfile
-        run: |
-          docker build -t keitaro/ckan/2.10:${{ github.sha }} -f ./images/ckan/2.10/Dockerfile.xloader ./images/ckan/2.10/
-
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: 'keitaro/ckan/2.10:${{ github.sha }}'
-          format: 'sarif'
-          output: 'trivy-results.sarif'
-
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: 'trivy-results.sarif'
-
-
-  scan_2_10_focal:
-    name: scan_2_10_focal
-    runs-on: ubuntu-20.04
-    steps:
-
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Build an image from Dockerfile
-        run: |
-          docker build -t keitaro/ckan/2.10-focal:${{ github.sha }} -f ./images/ckan/2.10/Dockerfile.focal ./images/ckan/2.10/
-
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: 'keitaro/ckan/2.10-focal:${{ github.sha }}'
-          format: 'sarif'
-          output: 'trivy-results.sarif'
-
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: 'trivy-results.sarif'
-
   scan_2_9:
     name: scan_2_9
     runs-on: ubuntu-20.04
     steps:
-
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -132,7 +57,6 @@ jobs:
     name: scan_2_9_focal
     runs-on: ubuntu-20.04
     steps:
-
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -156,7 +80,6 @@ jobs:
     name: scan_psql_init
     runs-on: ubuntu-20.04
     steps:
-
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -176,12 +99,10 @@ jobs:
         with:
           sarif_file: 'trivy-results.sarif'
 
-
   scan_datapusher:
     name: scan_datapusher
     runs-on: ubuntu-20.04
     steps:
-
       - name: Checkout code
         uses: actions/checkout@v4
 

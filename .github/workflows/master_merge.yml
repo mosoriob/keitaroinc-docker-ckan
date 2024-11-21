@@ -43,6 +43,7 @@ jobs:
           push: true
           tags: |
             ghcr.io/${{ github.repository_owner }}/ckan:${{ steps.alpine.outputs.IMAGE_TAG }}
+            ghcr.io/${{ github.repository_owner }}/ckan:${{ github.sha }}
           cache-from: type=local,src=/tmp/.buildx-cache-alpine-2-9
           cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-alpine-2-9
 
@@ -59,6 +60,7 @@ jobs:
           push: true
           tags: |
             ghcr.io/${{ github.repository_owner }}/ckan:${{ steps.ubuntu.outputs.IMAGE_TAG }}
+            ghcr.io/${{ github.repository_owner }}/ckan:${{ github.sha }}
           cache-from: type=local,src=/tmp/.buildx-cache-ubuntu-2-9
           cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-ubuntu-2-9
 
@@ -98,6 +100,7 @@ jobs:
           push: true
           tags: |
             ghcr.io/${{ github.repository_owner }}/datapusher:${{ steps.datapusher.outputs.IMAGE_TAG }}
+            ghcr.io/${{ github.repository_owner }}/datapusher:${{ github.sha }}
           cache-from: type=local,src=/tmp/.buildx-cache-datapusher
           cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-datapusher
 
@@ -137,5 +140,6 @@ jobs:
           push: true
           tags: |
             ghcr.io/${{ github.repository_owner }}/psql-init:${{ steps.psql-init.outputs.IMAGE_TAG }}
+            ghcr.io/${{ github.repository_owner }}/psql-init:${{ github.sha }}
           cache-from: type=local,src=/tmp/.buildx-cache-psql-init
           cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-psql-init

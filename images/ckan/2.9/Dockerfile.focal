@@ -23,11 +23,11 @@ ENV PIP_SRC=${SRC_DIR}
 
 WORKDIR ${SRC_DIR}
 
-# Set the locale
+# Set the locale          
 RUN apt-get update
 RUN apt-get install --no-install-recommends -y locales
 RUN sed -i "/$LC_ALL/s/^# //g" /etc/locale.gen
-RUN dpkg-reconfigure --frontend=noninteractive locales
+RUN dpkg-reconfigure --frontend=noninteractive locales 
 RUN update-locale LANG=${LC_ALL}
 
 # Instal apt-utils
@@ -139,7 +139,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # Set Locale
 ENV LC_ALL=en_US.UTF-8
 
-# Set the locale
+# Set the locale          
 RUN apt-get update && \
     apt-get install --no-install-recommends -y locales && \
     sed -i "/$LC_ALL/s/^# //g" /etc/locale.gen && \
@@ -219,8 +219,7 @@ RUN pip install -e /srv/app/src/ckan && \
     # Set the default level for extensions to INFO
     ckan config-tool ${APP_DIR}/production.ini -s logger_ckanext -e level=INFO && \
     # Change ownership to app user
-    chown -R ckan:ckan /srv/app && \
-    cp /srv/app/src/ckan/ckan/config/solr/schema.solr8.xml /srv/app/solr/ckan/conf/schema.xml
+    chown -R ckan:ckan /srv/app
 
 # Remove wheels
 RUN rm -rf /srv/app/wheels /srv/app/ext_wheels

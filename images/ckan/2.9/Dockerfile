@@ -162,6 +162,9 @@ RUN pip install -e /srv/app/src/ckan && \
     # Install default CKAN extensions
     pip install --no-index --find-links=/srv/app/ext_wheels ckanext-envvars && \
     pip install ckantoolkit && \
+    pip install ckanext-s3filestore && \
+    # Create and update CKAN config
+    # Set timezone
     echo "UTC" >  /etc/timezone && \
     # Generate CKAN config
     ckan generate config ${APP_DIR}/production.ini && \
@@ -179,8 +182,6 @@ RUN pip install -e /srv/app/src/ckan && \
 
 RUN cp /srv/app/src/ckan/ckan/config/solr/schema.solr8.xml /srv/app/src/ckan/ckan/config/solr/schema.xml
 RUN pip install -e 'git+https://github.com/mosoriob/ckanext-oauth2.git@0.7.1#egg=ckanext-oauth2'
-RUN pip install -e 'git+https://github.com/qld-gov-au/ckanext-s3filestore.git@0.7.7-qgov.9#egg=ckanext-s3filestore' && \
-    pip install boto3>=1.14.17 ckantoolkit>=0.0.4 pytz
 RUN pip install sqlalchemy==1.3.19
 # Remove wheels
 RUN rm -rf /srv/app/wheels /srv/app/ext_wheels
